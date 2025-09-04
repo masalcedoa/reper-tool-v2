@@ -1,0 +1,6 @@
+train:
+  - mcurvas
+  - msupervisado
+  - hibridacion
+prod:
+  - ingest -> mcurvas -> msupervisado -> hibridacion -> predict

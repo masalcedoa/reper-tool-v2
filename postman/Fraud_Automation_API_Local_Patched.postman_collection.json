@@ -1,0 +1,121 @@
+{
+  "info": {
+    "name": "Fraud Automation API (Local Patched)",
+    "_postman_id": "d4cc76fd-0ab6-435e-a8f0-219c42b9f584",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/health",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "health"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Upload META (XLSX/CSV)",
+      "request": {
+        "method": "POST",
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": []
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/meta/upload",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "meta",
+            "upload"
+          ]
+        }
+      }
+    },
+    {
+      "name": "Upload Consumos (XLSX/CSV)",
+      "request": {
+        "method": "POST",
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "src": []
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{baseUrl}}/ingest/upload",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "ingest",
+            "upload"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status 200', ()=>pm.response.to.be.success);",
+              "let body={}; try{ body=pm.response.json(); }catch(e){}",
+              "const jobId=body.job_id||body.jobId||''; pm.environment.set('job_id', jobId);",
+              "pm.test('job_id capturado', ()=>pm.expect(jobId).to.not.equal(''));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get Job Status",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/jobs/{{job_id}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "jobs",
+            "{{job_id}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "List Jobs",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/jobs",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "jobs"
+          ]
+        }
+      }
+    }
+  ]
+}

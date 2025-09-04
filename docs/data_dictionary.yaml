@@ -1,0 +1,7 @@
+entities:
+  consumo:
+    key: [CUENTA, PERIODO]
+    fields:
+      CUENTA: {type: string}
+      PERIODO: {type: date}
+      KWH: {type: number}

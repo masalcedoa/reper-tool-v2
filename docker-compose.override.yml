@@ -1,0 +1,5 @@
+# docker-compose.override.yml
+# Este override SOLO cambia el comando del worker para apuntar al objeto celery_app.
+services:
+  worker:
+    command: celery -A app.workers.celery_app.celery_app worker --loglevel=INFO

@@ -1,0 +1,4 @@
+- MCURVAS → limpieza/prep y features
+- MSUPERVISADO → modelo y score_supervisado
+- HIBRIDACION → umbral activo
+- PREDICT → publicación en BD
